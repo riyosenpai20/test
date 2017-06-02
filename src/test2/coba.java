@@ -5,21 +5,18 @@
  */
 package test2;
 
-import com.fazecast.jSerialComm.SerialPort;
-import java.text.DecimalFormat;
-import java.util.EventListener;
-import java.util.Scanner;
 import javax.swing.JTextField;
 
 /**
  *
- * @author riyos
+ * @author prosco
  */
-public class NewJFrame extends javax.swing.JFrame {
-    
-    
-    
-    public NewJFrame() {
+public class coba extends javax.swing.JFrame {
+
+    /**
+     * Creates new form coba
+     */
+    public coba() {
         initComponents();
     }
 
@@ -43,16 +40,16 @@ public class NewJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(243, Short.MAX_VALUE))
         );
 
         pack();
@@ -61,7 +58,7 @@ public class NewJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]){
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -75,65 +72,29 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(coba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(coba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(coba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(coba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new coba().setVisible(true);
             }
         });
         
-        JTextField textdata;
+        JTextField data = (JTextField) new JTextField
         
-        SerialPort[] portNames = SerialPort.getCommPorts();
-		System.out.println("SELECT a port :");
-		int i = 1;
-		for(SerialPort port : portNames){
-			System.out.println(i++ + ". " + port.getSystemPortName());
-		}
-		
-		Scanner s = new Scanner(System.in);
-		int chosenPort = s.nextInt();
-		
-		SerialPort port = portNames[0];
-		if(port.openPort()){
-			System.out.println("Berhasil konek ke " + port.getSystemPortName());
-		}
-		else
-		{
-			System.out.println("Gagal membuka port");
-			return;
-		}
-		
-		port.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
-		
-                textdata = new JTextField();
-                
-		Scanner data = new Scanner(port.getInputStream());
-		while(data.hasNextLine()){
-			System.out.println(data.nextLine());
-                        String nilai = new String(data.nextLine());
-                        //untuk mereplace string
-                        String cba = nilai.replaceFirst(".*?(\\d+).*", "$1");
-                        //int re = Integer.parseInt(cba);
-                        //DecimalFormat df = new DecimalFormat("0.0");
-                        jTextField1.setText(cba);
-                        
-		}
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

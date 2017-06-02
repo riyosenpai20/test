@@ -37,7 +37,7 @@ public class Main {
 			return;
 		}
 		
-		port.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
+		port.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
 		
 		Scanner data = new Scanner(port.getInputStream());
 		while(data.hasNextLine()){
