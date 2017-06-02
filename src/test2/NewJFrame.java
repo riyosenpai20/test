@@ -125,10 +125,12 @@ public class NewJFrame extends javax.swing.JFrame {
 			System.out.println(data.nextLine());
                         String nilai = new String(data.nextLine());
                         //untuk mereplace string
-                        String cba = nilai.replaceFirst(".*?(\\d+).*", "$1");
+                        String[] cba = nilai.split(" ");
+                        //double ammount = Double.parseDouble(cba[2]);
+                        String rr = cba[1].toString();
                         //int re = Integer.parseInt(cba);
                         //DecimalFormat df = new DecimalFormat("0.0");
-                        jTextField1.setText(cba);
+                        jTextField1.setText(rr);
                         
 		}
     }
