@@ -33,10 +33,16 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.setFont(new java.awt.Font("Lucida Console", 1, 24)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jButton1.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -44,15 +50,19 @@ public class NewJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(63, 63, 63))
         );
 
         pack();
@@ -97,25 +107,28 @@ public class NewJFrame extends javax.swing.JFrame {
         JTextField textdata;
         
         SerialPort[] portNames = SerialPort.getCommPorts();
-		System.out.println("SELECT a port :");
-		int i = 1;
-		for(SerialPort port : portNames){
+		//System.out.println("SELECT a port :");
+		//int i = 1;
+		/*
+                for(SerialPort port : portNames){
 			System.out.println(i++ + ". " + port.getSystemPortName());
 		}
-		
+		*/
+                
 		Scanner s = new Scanner(System.in);
-		int chosenPort = s.nextInt();
+		int chosenPort = 1;
 		
-		SerialPort port = portNames[0];
-		if(port.openPort()){
-			System.out.println("Berhasil konek ke " + port.getSystemPortName());
-		}
-		else
-		{
-			System.out.println("Gagal membuka port");
-			return;
-		}
-		
+		SerialPort port = portNames[chosenPort - 1];
+//		if(port.openPort()){
+//			System.out.println("Berhasil konek ke " + port.getSystemPortName());
+//		}
+//		else
+//		{
+//			System.out.println("Gagal membuka port");
+//			return;
+//		}
+		port.openPort();
+
 		port.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
 		
                 textdata = new JTextField();
@@ -129,13 +142,23 @@ public class NewJFrame extends javax.swing.JFrame {
                         //double ammount = Double.parseDouble(cba[2]);
                         String rr = cba[1].toString();
                         //int re = Integer.parseInt(cba);
-                        //DecimalFormat df = new DecimalFormat("0.0");
+                        double val = Double.parseDouble(rr);
+                        
                         jTextField1.setText(rr);
+                        if(val > 130.5)
+                        {
+                        jButton1.setVisible(true);
+                        }
+                        else
+                        {
+                        jButton1.setVisible(false);        
+                        }
                         
 		}
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton jButton1;
     public static javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
